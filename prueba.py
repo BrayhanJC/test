@@ -24,7 +24,7 @@ def llenarTanques():
 
 	litros = 4
 
-	tiempo = 20
+	tiempo = 30
 
 	litrosDisponibles = 0
 
@@ -37,12 +37,23 @@ def llenarTanques():
 
 		if x > 1:
 
-			if llenarB <= tanqueB:
+			if llenarB < tanqueB:
 
-				llenarB = llenarB + tuberiaTanqueAB
-				llenarA = llenarA - tuberiaTanqueAB
+				if (llenarB + tuberiaTanqueAB) < tanqueB:
 
-			if llenarC <= tanqueC:
+					llenarB = llenarB + tuberiaTanqueAB
+					llenarA = llenarA - tuberiaTanqueAB
+
+				else:
+					diferencia = tanqueB - llenarB
+
+					llenarB = llenarB + diferencia
+					llenarA = llenarA - diferencia
+
+			else:
+				print('El tanque B esta totalmente lleno')
+
+			if llenarC < tanqueC:
 
 				if llenarA < tuberiaTanqueAC:
 
@@ -51,9 +62,29 @@ def llenarTanques():
 					aux = tuberiaTanqueAC
 
 				if x > 2:
-					llenarC = llenarC + aux
+								
+					if (llenarC + aux) < tanqueC:
 
-				llenarA = llenarA - aux
+						llenarC = llenarC + aux
+						llenarA = llenarA - aux
+
+					else:
+						if llenarB < tanqueB:
+							llenarC = llenarC + tuberiaTanqueAC
+							llenarA = llenarA - tuberiaTanqueAC
+						else:
+							diferencia = tanqueC - llenarC
+							llenarC = llenarC + diferencia
+							llenarA = llenarA - diferencia
+
+
+
+				if x >= 1:
+					llenarA = llenarA - aux
+
+			else:
+				print('El tanque C esta totalmente lleno')
+
 
 			if x > 2:
 
@@ -80,7 +111,7 @@ def llenarTanques():
 
 			llenarA = 4
 
-	resultado("Tanque A", llenarA)
+	resultado("Tanque A ", llenarA)
 	resultado("Tanque B", llenarB)
 	resultado("Tanque C", llenarC)
 	resultado("Tanque D", llenarD)

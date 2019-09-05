@@ -24,7 +24,7 @@ def llenarTanques():
 
 	litros = 4
 
-	tiempo = 30
+	tiempo = 20
 
 	litrosDisponibles = 0
 
